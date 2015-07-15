@@ -64,6 +64,13 @@ public class SimpleServer {
 		if (prefix.equals(LOG_IN)) {
 			String[] parts = message.split(" ");
 			System.out.println("Login attempt from " + parts[0] + "//" + parts[1]);
+			
+			int addUserResult = addUser(parts[0], parts[1]);
+			if (addUserResult == USER_EXISTS) {
+				System.out.println("Whoops, the user is already in the database!");
+			} else if (addUserResult == SUCCESS) {
+				System.out.println("User successfully registered");
+			}
 		}
 	}
 	
